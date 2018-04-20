@@ -38,6 +38,17 @@ app.route('/')
 		  res.sendFile(process.cwd() + '/views/index.html');
     })
 
+app.route('/api/whoami')
+    .get(function(req, res) {
+      let ipReq = req.headers['x-forwarded-for'];
+      //{"ipaddress":"129.21.64.202","language":"en-US","software":"Macintosh; Intel Mac OS X 10_13_2"}
+      let ip = ipReq.split(',')[0];
+      let jsonBody = {"ipaddress": ip}
+      res.send(jsonBody);
+		  //res.sendFile(process.cwd() + '/views/index.html');
+    })
+
+
 // Respond not found to all the wrong routes
 app.use(function(req, res, next){
   res.status(404);
