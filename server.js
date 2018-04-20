@@ -48,7 +48,7 @@ app.route('/api/whoami')
       let language = languageReq.split(',')[0];
       let osUser = req.headers["user-agent"].split('(')[1].split(')')[0];
           
-      let jsonBody = {"ipaddress": ip, "language": language, "software":os}
+      let jsonBody = {"ipaddress": ip, "language": language, "software": osUser};
       
       res.send(jsonBody);
 		  //res.sendFile(process.cwd() + '/views/index.html');
