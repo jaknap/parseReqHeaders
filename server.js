@@ -43,7 +43,13 @@ app.route('/api/whoami')
       let ipReq = req.headers['x-forwarded-for'];
       //{"ipaddress":"129.21.64.202","language":"en-US","software":"Macintosh; Intel Mac OS X 10_13_2"}
       let ip = ipReq.split(',')[0];
-      let jsonBody = {"ipaddress": ip}
+      
+      let languageReq = req.headers["accept-language"];
+      let language = languageReq.split(',')[0];
+      let osUser = req.headers["user-agent"].split('(')[1].split(')')[0];
+          
+      let jsonBody = {"ipaddress": ip, "language": language, "software":os}
+      
       res.send(jsonBody);
 		  //res.sendFile(process.cwd() + '/views/index.html');
     })
